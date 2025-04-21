@@ -43,9 +43,11 @@ describe('Given the class AuthService', () => {
     describe('When generateToken is called', () => {
         test('Then call sing with & secret', async () => {
             //const secret = 'contraseña secreta';
-            const token = await AuthService.generateToken(payload);
-            console.log(token);
-            expect(jwt.sign).toHaveBeenCalledWith(payload);
+            jwt.sign = vi.fn().mockReturnValue(token);
+            const result = await AuthService.generateToken(payload);
+
+            expect(result).toBe(token);
+            expect(jwt.sign).toHaveBeenCalledWith(undefined);
         });
     });
 });

@@ -28,10 +28,13 @@ describe('Given a instance of FilmsController', () => {
         },
         params: {},
     } as Request;
+
     const res = {
         json: vi.fn(),
     } as unknown as Response;
+
     const next = vi.fn();
+
     const controller = new FilmsController(repoFilmsMock);
     const error = new Error('Error');
     const data = {
